@@ -1,3 +1,4 @@
+/* eslint-disable no-async-promise-executor */
 import fs from 'fs';
 import Jimp = require('jimp');
 
@@ -16,7 +17,7 @@ export async function filterImageFromURL(inputURL: string): Promise<string>{
         .resize(256, 256) // resize
         .quality(60) // set JPEG quality
         .greyscale() // set greyscale
-        .write(__dirname+outpath, (img)=>{
+        .write(__dirname+outpath, ()=>{
             resolve(__dirname+outpath);
         });
     });
@@ -28,7 +29,7 @@ export async function filterImageFromURL(inputURL: string): Promise<string>{
 // INPUTS
 //    files: Array<string> an array of absolute paths to files
 export async function deleteLocalFiles(files:Array<string>){
-    for( let file of files) {
+    for(const file of files) {
         fs.unlinkSync(file);
     }
 }
