@@ -11,6 +11,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+/* eslint-disable no-async-promise-executor */
 const fs_1 = __importDefault(require("fs"));
 const Jimp = require("jimp");
 // filterImageFromURL
@@ -29,7 +30,7 @@ function filterImageFromURL(inputURL) {
                 .resize(256, 256) // resize
                 .quality(60) // set JPEG quality
                 .greyscale() // set greyscale
-                .write(__dirname + outpath, (img) => {
+                .write(__dirname + outpath, () => {
                 resolve(__dirname + outpath);
             });
         }));
@@ -43,7 +44,7 @@ exports.filterImageFromURL = filterImageFromURL;
 //    files: Array<string> an array of absolute paths to files
 function deleteLocalFiles(files) {
     return __awaiter(this, void 0, void 0, function* () {
-        for (let file of files) {
+        for (const file of files) {
             fs_1.default.unlinkSync(file);
         }
     });
