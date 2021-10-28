@@ -1,6 +1,11 @@
 node_modules
+www/
 build
 npm-debug.log
 .nyc
 .env
 .DS_Store
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
